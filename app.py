@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_login import LoginManager
-from flask_user import UserManager
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from config import config
@@ -20,9 +19,6 @@ def create_app(config_name='default'):
 
     db.init_app(app)
     login_manager.init_app(app)
-
-    # Flask-User
-    user_manager = UserManager(app, db, User)
 
     # Flask-Admin
     admin = Admin(app, name='Admin', template_mode='bootstrap3')

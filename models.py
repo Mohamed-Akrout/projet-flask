@@ -33,6 +33,10 @@ class User(UserMixin, db.Model):
         self.token = secrets.token_hex(16)
         return self.token
 
+    @classmethod
+    def get_user_by_token(cls, token):
+        return cls.query.filter_by(token=token).first()
+
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64))
